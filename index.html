@@ -1,0 +1,55 @@
+<html>
+<head>
+<style>
+	#hot-dog {
+	  width: 100px;
+	  position: fixed;
+	  top: 0px;
+	  left: 0px;
+	}
+
+	.info {
+	  position: fixed;
+	  bottom: 0px;
+	  left: 0px;
+	  padding: 5px;
+	}
+</style>
+<script>
+	var self= this;
+
+	var hotDog = $('#hot-dog');
+	var dogWidth = hotDog.width();
+	var dogHeight = hotDog.height();
+
+	resetDog();
+
+	$('#dog-reset').click(function() {self.resetDog()});
+
+	function resetDog () {
+	  hotDog.css('left', ($(window).width()/2));
+	  hotDog.css('top', ($(window).height()/2));
+	}
+
+	hotDog.mousemove(function(event){
+	  // Move Horizontally
+	  if (event.offsetX < 10) {
+	    self.hotDog.css('left', event.pageX);
+	  } else {
+	    var newPosition = event.pageX - hotDog.width();
+	     self.hotDog.css('left', newPosition);
+	  }
+	  // Move Vertically
+	  if (event.offsetY < 10) {
+	    self.hotDog.css('top', event.pageY);
+	  } else {
+	    self.hotDog.css('top', event.pageY - hotDog.height());
+	  }
+	});
+</script>
+</head>
+<body>
+	<img id="hot-dog" src="./hotdog.jpg">
+	<span id="dog-reset">whered my dog go?</span>
+</body>
+</html>
